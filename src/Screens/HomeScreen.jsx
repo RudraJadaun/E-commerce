@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import products from '../products';
+//instead of manualy fetching now we will use the useEffect hook to get data from backend
+import axios from 'axios';
 
 const HomeScreen = () => {
+    // const [products, setProducts] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         const { data } = await axios.get('/api/products');
+    //         setProducts(data);
+    //     };
+    //     fetchProducts();
+
+    // }, []); //simply a dependency to fetch the product data from api and add it to our ui
+
     return (
         <div>
             <h1>Lastest product</h1>
