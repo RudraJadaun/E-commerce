@@ -56,7 +56,7 @@ const productSchema = new mongoose.Schema ({
             type: String,
             required: true,
           },
-          reviews: [reviewSchema], // reviewsSchema will help in getting the rreviws this taking refernce the schema created above
+          
           rating: {
             type: Number,
             required: true,
@@ -77,6 +77,7 @@ const productSchema = new mongoose.Schema ({
             required: true,
             default: 0,
           },
+          reviews: [reviewSchema], // reviewsSchema will help in getting the rreviws this taking refernce the schema created above
         },
         {
           timestamps: true,
