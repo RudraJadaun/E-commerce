@@ -15,6 +15,7 @@ import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
 import { Provider } from 'react-redux';
 import store from './store';
+import CartScreen from './Screens/CartScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,8 @@ const router = createBrowserRouter(
       <Route index={true} path='/' element={<HomeScreen />} />{/*index={true} so that it doesnot show multiple screen */}
       {/* <Route path='/product/:id' element={<ProductScreen />} /> */}
       <Route path='/product/:id' element={<ProductScreen />} />
+      <Route path='/cart' element={<CartScreen />} />
+
     </Route>
   )
 )
@@ -29,9 +32,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <RouterProvider router={router} />
-    {/* </Provider> */}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
