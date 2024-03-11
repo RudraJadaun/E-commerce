@@ -1,4 +1,4 @@
-const wrapasync = (fn) => (req, res, next) =>
+const wrapAsync = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-module.exports=wrapasync;
+module.exports=wrapAsync;

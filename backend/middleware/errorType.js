@@ -1,5 +1,5 @@
 const notFound = (req, res, next) => {
-    const error = new Error("page not found"); // middleware for every known error 
+    const error = new Error(`page not found ${req.originalUrl}`); // middleware for every known error 
     res.status(404);
     //res.json(err);
     next(error);
@@ -21,4 +21,4 @@ if(err.name==='CastError'  &&  err.kind==='ObjectId'){
     });
   };
   
-  module.exports={ notFound, errorHandler };
+module.exports={ notFound, errorHandler };

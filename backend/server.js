@@ -4,23 +4,33 @@ dotenv.config();
 const connectDB= require('./config/database');
 
 //import express from 'express';
-const product=require('./models/products');
+//const product=require('./models/products');
 const ProductRoutes= require('./routes/productRoute');
+const UserRoutes=require('./routes/userRoute');
+const cookieParser=require('cookie-parser');
 const { notFound, errorHandler }=require('./middleware/errorType');
 const port = process.env.PORT || 8080; // just in case our actual port is down we can use a default 8080
 connectDB();
 const app = express();
 
-
+app.use(express.json());// puts data in req.body
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser()); // will allow us to acess req.cookie ( our cookie here is jwt)
 
 app.get('/',(req,res)=>{
 res.send("server testing");
 });
 
 
-app.use('./api/products',ProductRoutes); // froms  the baseURL for all the routes in ProductRoutes file
+app.use(ProductRoutes); // froms  the baseURL for all the routes in ProductRoutes file
+app.use('./api/users', UserRoutes);
+
+app.get('/api/products/hello',(req,res)=>{
+    res.send("hello");
+    });
 
 app.use(notFound);
+
 app.use(errorHandler);
 
 
