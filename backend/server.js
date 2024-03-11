@@ -15,18 +15,17 @@ const app = express();
 
 app.use(express.json());// puts data in req.body
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser()); // will allow us to acess req.cookie ( our cookie here is jwt)
+app.use(cookieParser()); // will allow us to access req.cookie ( our cookie here is jwt)
 
 app.get('/',(req,res)=>{
 res.send("server testing");
 });
 
-
 app.use(ProductRoutes); // froms  the baseURL for all the routes in ProductRoutes file
-app.use('./api/users', UserRoutes);
+app.use( UserRoutes);
 
 app.get('/api/products/hello',(req,res)=>{
-    res.send("hello");
+    res.send("hello testing 123");
     });
 
 app.use(notFound);
