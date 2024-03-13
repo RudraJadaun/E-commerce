@@ -7,9 +7,11 @@ const connectDB= require('./config/database');
 //const product=require('./models/products');
 const ProductRoutes= require('./routes/productRoute');
 const UserRoutes=require('./routes/userRoute');
+const OrderRoutes=require('./routes/orderRoute');
+const PaymentRoutes=require('./routes/productRoute');
 const cookieParser=require('cookie-parser');
 const { notFound, errorHandler }=require('./middleware/errorType');
-const port = process.env.PORT || 8080; // just in case our actual port is down we can use a default 8080
+const port = process.env.PORT ; // just in case our actual port is down we can use a default 8080
 connectDB();
 const app = express();
 
@@ -22,7 +24,9 @@ res.send("server testing");
 });
 
 app.use(ProductRoutes); // froms  the baseURL for all the routes in ProductRoutes file
-app.use( UserRoutes);
+app.use(UserRoutes);
+app.use(OrderRoutes);
+app.use(PaymentRoutes);
 
 app.get('/api/products/hello',(req,res)=>{
     res.send("hello testing 123");
@@ -38,4 +42,4 @@ app.use(errorHandler);
 
 app.listen(port,()=>{
     console.log(`Server is running on ${port}`);
-})
+});

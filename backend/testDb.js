@@ -20,7 +20,7 @@ const importData = async () => {
 
     const createdUsers = await User.insertMany(user);
 
-    const adminUser = createdUsers[0]._id; //id we will get from monfoDb (auto-generated)
+    const adminUser = createdUsers[0]._id; //id we will get from mongoDb (auto-generated)
 
     const sampleProducts = product.map((product) => {
       return { ...product, user: adminUser };

@@ -3,8 +3,7 @@ const router=express.Router();
 const User =require('../models/user'); // later we will use the data in mongoDb this just for test
 const wrapAsync =require('../middleware/errorHandling');
 const jwt =require('jsonwebtoken');
-const {protect,admin}=require('../middleware/authenticate');
-//router.get('/',)
+const {protect}=require('../middleware/authenticate');
 
 
 const generateToken =require ('../utils/generateToken');
@@ -60,7 +59,7 @@ router.post( '/api/users',wrapAsync(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('user data is invalid');
+    throw new Error('Invalid Data');
   }
 }));
 
@@ -115,6 +114,6 @@ router.put('/api/users/profile', protect , wrapAsync(async (req, res) => {
   }
 }));
 
-//will write code for admin functionality later
+
 
 module.exports=router;
