@@ -18,6 +18,9 @@ import store from './store';
 import CartScreen from './Screens/CartScreen';
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
+import ShippingScreen from './Screens/ShippingScreen';
+import PaymentScreen from './Screens/PaymentScreen';
+import PrivateRoute from './components/PrivateRoute';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,9 +32,13 @@ const router = createBrowserRouter(
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
 
+      <Route path='' element={<PrivateRoute />}>
+        <Route path='/shipping' element={<ShippingScreen />} />
+        <Route path='/payment' element={<PaymentScreen />} />
+      </Route>
     </Route>
   )
-)
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
