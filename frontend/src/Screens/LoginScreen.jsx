@@ -34,7 +34,7 @@ const LoginScreen = () => {
         e.preventDefault();
         try {
             const res = await login({ email, password }).unwrap();
-            dispatch(setCredentials({ ...res }));
+            dispatch(setCredentials({ ...res, }));
             navigate(redirect);
         } catch (err) {
             toast.error(err?.data?.message || err.error);
@@ -66,7 +66,7 @@ const LoginScreen = () => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
+                <Button type='submit' variant='primary' className='mt-2'>
                     Sign In
                 </Button>
 
