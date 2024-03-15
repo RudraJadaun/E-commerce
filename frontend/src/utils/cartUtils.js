@@ -12,5 +12,4 @@ export const updateCart = (state) => {  //calculate item price
     state.totalPrice = (Number(state.itemPrice) + Number(state.shippingPrice) + Number(state.taxPrice)).toFixed(2);
     localStorage.setItem('cart', JSON.stringify(state));
     return state;
-}
-//we need to export whatever in the reducers as actions}
+}//save into local storage so need to stingigy the object 

@@ -7,7 +7,7 @@ export const productSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: PRODUCTS_URL,
             }),
-            keepUnusedDataFor: 5,
+            keepUnusedDataFor: 5,// will keep the data in cache for 5 seconds after the endpoint is hit
         }),
         getProductDetails: builder.query({
             query: (productId) => ({
@@ -19,6 +19,7 @@ export const productSlice = apiSlice.injectEndpoints({
 });
 
 export const { useGetProductsQuery, useGetProductDetailsQuery } = productSlice;
+//use-Something-query to fetch data and use-something-mutation to change builder ki peoperty hai
 
 
 

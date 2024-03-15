@@ -7,26 +7,30 @@ import { Form, Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating';
 import axios from 'axios';
 import { addToCart } from '../slices/cartSlice';
+import { useGetProductDetailsQuery } from '../slices/productSlices';
 
 const ProductScreen = () => {
+    const { id: productId } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id: productId } = useParams();
-    const [product, setProduct] = useState({});
+    const { data: product, isLoading, error } = useGetProductDetailsQuery(
+        productId
+    )
+
+
+    // useEffect(() => {
+    //     const fetchProduct = async () => {
+    //         const { data } = await axios.get(`/api/products/${productId}`);
+    //         setProduct(data);
+    //     };
+
+    //     fetchProduct(); 
+    // }, [productId]);
+    const [qty, setQty] = useState(1);
     const addToCartHandller = () => {
         dispatch(addToCart({ ...product, qty }))
         navigate('/cart')
     }
-
-    useEffect(() => {
-        const fetchProduct = async () => {
-            const { data } = await axios.get(`/api/products/${productId}`);
-            setProduct(data);
-        };
-
-        fetchProduct();
-    }, [productId]);
-    const [qty, setQty] = useState(1);
 
 
     return (
@@ -34,7 +38,7 @@ const ProductScreen = () => {
             <Link to='/' className='btn btn-light my-3'>
                 Go Back
             </Link>
-            <Row>
+            {isLoading ? (<h2>Loading..</h2>) : error ? (<div>{error?.data.message || error.error}</div>) : (<Row>
                 <Col md={5}>
                     <Image src={product.image} alt={product.name} fluid />
                 </Col>
@@ -111,7 +115,8 @@ const ProductScreen = () => {
                         </ListGroup>
                     </Card>
                 </Col>
-            </Row>
+            </Row>)}
+
         </>
     );
 };

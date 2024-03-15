@@ -23,6 +23,7 @@ const LoginScreen = () => {
     const { search } = useLocation();
     const sp = new URLSearchParams(search);
     const redirect = sp.get('redirect') || '/';
+    //we are using useLocation hookto get the URL and then search for redirect in those params
 
     useEffect(() => {
         if (userInfo) {

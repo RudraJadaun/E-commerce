@@ -7,3 +7,4 @@ export const apiSlice = createApi({
     tagTypes: ['Products', 'Order', 'User'],
     endpoints: (builder) => ({})
 })
+//inject endpoints to create endpoints for various operation we'll inject them into main slice(ApiSlice)'s builder to update a state.

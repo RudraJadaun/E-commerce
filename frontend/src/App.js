@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
+
     <>
       <Header />
       <main className='py=3'>
