@@ -6,7 +6,11 @@ import FormContainer from '../components/FormContainer';
 import { saveShippingAddress } from '../slices/cartSlice';
 import CheckoutSteps from "../components/CheckoutSteps";
 
+
+
 const ShippingScreen = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cart = useSelector((state) => state.cart);
     const { shippingAddress } = cart;
 
@@ -14,8 +18,7 @@ const ShippingScreen = () => {
     const [city, setCity] = useState(shippingAddress?.city || '');
     const [postalCode, setPostalCode] = useState(shippingAddress?.postalCode || '');
     const [country, setCountry] = useState(shippingAddress?.country || '');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+
 
     const submitHandler = (e) => {
         e.preventDefault();

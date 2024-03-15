@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//to set user credentials to local storage and to remove them
+//to check if userinfo is in local storage else null
 const initialState = {
     userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
 }

@@ -39,11 +39,27 @@ const cartSlice = createSlice({
             state.shippingAddress = action.payload;
 
             return updateCart(state);
-        }
+        },
+        savePaymentMethod: (state, action) => {
+            state.paymentMethod = action.payload;
+            localStorage.setItem('cart', JSON.stringify(state));
+        },
+        clearCartItems: (state, action) => {
+            state.cartItems = [];
+            localStorage.setItem('cart', JSON.stringify(state));
+        },// here we need to reset state for when a user logs out so the next
+        // user doesn't inherit the previous users cart and shipping
+        resetCart: (state) => (state = initialState),
 
     },
 });
 
-export const { addToCart, removeFromCart, saveShippingAddress } = cartSlice.actions;
+export const { addToCart,
+    removeFromCart,
+    saveShippingAddress,
+    savePaymentMethod,
+    clearCartItems,
+    resetCart, } = cartSlice.actions;
+//exporting as a method it's a regular reducer function
 
 export default cartSlice.reducer;
